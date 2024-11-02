@@ -1,4 +1,43 @@
 ﻿@page
 @model SupermarketWEB.Pages.Providers.DeleteModel
 @{
+    ViewData["Title"] = "Delete";
 }
+
+<h1>Eliminar</h1>
+<h3>¿Está seguro que desea eliminar esto?</h3>
+<div>
+    <h4>Categoría</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Provider.Document)  
+
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Provider.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Provider.LastName)  
+
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Provider.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Provider.Email)  
+
+        </dt>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Provider.Document)  
+
+        </dt>
+
+    </dl>
+    <form method="post">
+        <input type="hidden" asp-for="Provider.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-page="./Index" class="btn btn-primary">Back to List</a>
+    </form>
+
+</div>
