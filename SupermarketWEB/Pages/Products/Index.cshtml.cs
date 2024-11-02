@@ -23,10 +23,11 @@ namespace SupermarketWEB.Pages.Products
 
 
         {
-            if (_context.Products != null)
+            if (_context.Categories != null)
             {
                 Products = await _context.Products.ToListAsync();
             }
         }
     }
 }
+

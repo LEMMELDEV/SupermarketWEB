@@ -37,5 +37,34 @@ namespace SupermarketWEB.Pages.Categories
                 return Page();
             }
         }
-    }
+
+
+            public async Task<IActionResult> OnPostAsync(int? id)
+            {
+                // Verifica si el id es nulo o si el contexto de categorías es nulo.
+                if (id == null || _context.Categories == null)
+                {
+                    // Si alguna de las condiciones anteriores es verdadera, se devuelve un error 404 (Not Found).
+                    return NotFound();
+                }
+
+                // Busca la categoría con el id proporcionado de forma asíncrona.
+                var category = await _context.Categories.FindAsync(id);
+
+                // Si la categoría no se encuentra, se devuelve un error 404.
+                if (category == null)
+                {
+                    return NotFound();
+                }
+
+                // Si se encuentra la categoría, se procede a eliminarla.
+                Category = category; // Asigna la categoría encontrada a la propiedad Category.
+                _context.Categories.Remove(Category); // Elimina la categoría del contexto.
+                await _context.SaveChangesAsync(); // Guarda los cambios en la base de datos de forma asíncrona.
+
+                // Redirige a la página de índice después de eliminar la categoría.
+                return RedirectToPage("./Index");
+            }
+        }
+  
 }
